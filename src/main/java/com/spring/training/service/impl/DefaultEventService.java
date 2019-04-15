@@ -3,11 +3,14 @@ package com.spring.training.service.impl;
 import com.spring.training.dao.EventDao;
 import com.spring.training.domain.Event;
 import com.spring.training.service.EventService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collection;
 
+@Service("eventService")
 public class DefaultEventService implements EventService {
     private EventDao eventDao;
 
@@ -50,6 +53,7 @@ public class DefaultEventService implements EventService {
         return null;
     }
 
+    @Autowired
     public void setEventDao(EventDao eventDao) {
         this.eventDao = eventDao;
     }

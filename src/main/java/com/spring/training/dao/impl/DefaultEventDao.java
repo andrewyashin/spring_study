@@ -2,11 +2,13 @@ package com.spring.training.dao.impl;
 
 import com.spring.training.dao.EventDao;
 import com.spring.training.domain.Event;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository("eventDao")
 public class DefaultEventDao implements EventDao {
     private static final List<Event> events = new ArrayList<>();
 
