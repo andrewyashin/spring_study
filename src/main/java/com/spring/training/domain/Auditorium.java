@@ -19,12 +19,6 @@ public class Auditorium {
     public Auditorium() {
     }
 
-    /**
-     * Counts how many vip seats are there in supplied <code>seats</code>
-     *
-     * @param seats Seats to process
-     * @return number of vip seats in request
-     */
     public long countVipSeats(Collection<Long> seats) {
         return seats.stream().filter(seat -> vipSeats.contains(seat)).count();
     }

@@ -3,4 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <alias name="defaultEventDao" alias="eventDao"/>
+    <bean name="defaultEventDao" class="com.spring.training.dao.impl.DefaultEventDao"/>
+
+    <alias name="defaultEventService" alias="eventService"/>
+    <bean name="defaultEventService" class="com.spring.training.service.impl.DefaultEventService">
+        <property name="eventDao" ref="eventDao"/>
+    </bean>
+
+
 </beans>
