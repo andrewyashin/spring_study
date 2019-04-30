@@ -2,6 +2,7 @@ package com.spring.training.service.impl;
 
 import com.spring.training.domain.Event;
 import com.spring.training.service.EventService;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,11 @@ public class EventServiceIntegrationTest {
         assertNotNull(eventService.getByName(NAME));
         eventService.remove(event);
         assertNull(eventService.getByName(NAME));
+    }
 
+    @After
+    public void cleanUp(){
+        eventService.remove(eventService.getByName(NAME));
     }
 
     @Autowired

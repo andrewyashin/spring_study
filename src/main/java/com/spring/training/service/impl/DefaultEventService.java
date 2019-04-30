@@ -39,7 +39,7 @@ public class DefaultEventService implements EventService {
 
     @Override
     public void remove(@Nonnull Event object) {
-        eventDao.delete(object);
+        eventDao.remove(object);
     }
 
     @Override
