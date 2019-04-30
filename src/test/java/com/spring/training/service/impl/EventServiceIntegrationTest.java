@@ -3,6 +3,7 @@ package com.spring.training.service.impl;
 import com.spring.training.domain.Event;
 import com.spring.training.service.EventService;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,37 +18,39 @@ import static org.junit.Assert.assertNull;
 public class EventServiceIntegrationTest {
 
     private static final String NAME = "name";
+    private Event event;
 
     @Autowired
     private EventService eventService;
 
+    @Before
+    public void setUp() {
+        event = new Event();
+        event.setName(NAME);
+    }
+
+    @After
+    public void cleanUp() {
+        eventService.remove(event);
+    }
+
     @Test
-    public void shouldCreateEvent() {
-        assertNotNull(eventService.createEvent(NAME));
+    public void shouldSaveEvent() {
+        assertNotNull(eventService.save(event));
     }
 
     @Test
     public void shouldGetEvent() {
-        eventService.createEvent(NAME);
+        eventService.save(event);
         assertNotNull(eventService.getByName(NAME));
     }
 
     @Test
     public void shouldCreateAndDeleteEvent() {
-        Event event = eventService.createEvent(NAME);
-        assertNotNull(event);
+        Event resultEvent = eventService.save(event);
+        assertNotNull(resultEvent);
         assertNotNull(eventService.getByName(NAME));
-        eventService.remove(event);
+        eventService.remove(resultEvent);
         assertNull(eventService.getByName(NAME));
-    }
-
-    @After
-    public void cleanUp(){
-        eventService.remove(eventService.getByName(NAME));
-    }
-
-    @Autowired
-    public void setEventService(EventService eventService) {
-        this.eventService = eventService;
     }
 }

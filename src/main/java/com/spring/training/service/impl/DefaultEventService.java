@@ -8,28 +8,21 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Set;
 
 @Service("eventService")
 public class DefaultEventService implements EventService {
+
+    @Autowired
     private EventDao eventDao;
 
     @Nullable
     @Override
     public Event getByName(@Nonnull String name) {
         return eventDao.getEvent(name);
-    }
-
-    @Nullable
-    @Override
-    public Event createEvent(@Nonnull String name) {
-        Event event = getByName(name);
-        if (event == null) {
-            Event newEvent = new Event();
-            newEvent.setName(name);
-            return save(newEvent);
-        }
-        return event;
     }
 
     @Override
@@ -44,17 +37,12 @@ public class DefaultEventService implements EventService {
 
     @Override
     public Event getById(@Nonnull Long id) {
-        return null;
+        return eventDao.getById(id);
     }
 
     @Nonnull
     @Override
     public Collection<Event> getAll() {
-        return null;
-    }
-
-    @Autowired
-    public void setEventDao(EventDao eventDao) {
-        this.eventDao = eventDao;
+        return eventDao.getAll();
     }
 }
