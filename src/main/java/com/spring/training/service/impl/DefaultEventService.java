@@ -4,6 +4,7 @@ import com.spring.training.dao.EventDao;
 import com.spring.training.domain.Event;
 import com.spring.training.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
@@ -17,6 +18,7 @@ import java.util.Set;
 public class DefaultEventService implements EventService {
 
     @Autowired
+    @Qualifier("eventDao")
     private EventDao eventDao;
 
     @Nullable

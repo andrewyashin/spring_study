@@ -4,6 +4,7 @@ import com.spring.training.dao.UserDao;
 import com.spring.training.domain.User;
 import com.spring.training.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
@@ -14,6 +15,7 @@ import java.util.Collection;
 public class DefaultUserService implements UserService {
 
     @Autowired
+    @Qualifier("userDao")
     private UserDao userDao;
 
     @Nullable
