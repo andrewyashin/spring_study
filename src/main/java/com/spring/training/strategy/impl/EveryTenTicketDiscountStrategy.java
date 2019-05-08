@@ -10,13 +10,13 @@ import java.time.LocalDateTime;
 
 @Component("everyTenTicketDiscountStrategy")
 public class EveryTenTicketDiscountStrategy implements DiscountStrategy {
-    @Value("{discount.every.ten.ticket}")
+    @Value("${discount.every.ten.ticket}")
     private byte discount;
 
     @Override
     public byte apply(User user, Event event, LocalDateTime airDateTime, long numberOfTickets) {
         if (numberOfTickets % 10 == 0)
-            return discount;
+            return Byte.valueOf(Integer.toString(discount/10));
         return 0;
     }
 }

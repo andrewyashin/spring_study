@@ -14,7 +14,7 @@ public class User extends DomainObject {
 
     private String email;
 
-    private LocalDateTime bithdate;
+    private LocalDateTime birthday;
 
     private NavigableSet<Ticket> tickets = new TreeSet<>();
 
@@ -42,12 +42,12 @@ public class User extends DomainObject {
         this.email = email;
     }
 
-    public LocalDateTime getBithdate() {
-        return bithdate;
+    public LocalDateTime getBirthday() {
+        return birthday;
     }
 
-    public void setBithdate(LocalDateTime bithdate) {
-        this.bithdate = bithdate;
+    public void setBirthday(LocalDateTime birthday) {
+        this.birthday = birthday;
     }
 
     public NavigableSet<Ticket> getTickets() {

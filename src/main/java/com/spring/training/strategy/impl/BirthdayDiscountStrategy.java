@@ -13,14 +13,14 @@ import java.util.Objects;
 
 @Component("birthdayDiscountStrategy")
 public class BirthdayDiscountStrategy implements DiscountStrategy {
-    @Value("{discount.bitrhday}")
+    @Value("${discount.bitrhday}")
     private byte discount;
 
     @Override
     public byte apply(@Nullable User user, @Nonnull Event event, LocalDateTime airDateTime, long numberOfTickets) {
         if (Objects.nonNull(user)) {
-            if (user.getBithdate().plusDays(5).isBefore(airDateTime)
-                    && user.getBithdate().minusDays(5).isAfter(airDateTime))
+            final LocalDateTime userBirthday = user.getBirthday().withYear(airDateTime.getYear());
+            if (userBirthday.plusDays(5).isAfter(airDateTime) && userBirthday.minusDays(5).isBefore(airDateTime))
                 return discount;
         }
         return 0;
