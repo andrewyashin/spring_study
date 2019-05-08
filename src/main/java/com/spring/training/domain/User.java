@@ -1,5 +1,6 @@
 package com.spring.training.domain;
 
+import java.time.LocalDateTime;
 import java.util.NavigableSet;
 import java.util.Objects;
 import java.util.TreeSet;
@@ -12,6 +13,8 @@ public class User extends DomainObject {
     private String lastName;
 
     private String email;
+
+    private LocalDateTime bithdate;
 
     private NavigableSet<Ticket> tickets = new TreeSet<>();
 
@@ -37,6 +40,14 @@ public class User extends DomainObject {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public LocalDateTime getBithdate() {
+        return bithdate;
+    }
+
+    public void setBithdate(LocalDateTime bithdate) {
+        this.bithdate = bithdate;
     }
 
     public NavigableSet<Ticket> getTickets() {
